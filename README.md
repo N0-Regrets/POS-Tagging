@@ -2,8 +2,8 @@
 
 # Part-of-Speech Tagging using Keras
 ## Overview
-This repository contains an implementation of a Part-of-Speech (POS) tagging model using recurrent neural networks (Bidirectional LSTMs) and pre-trained word embeddings. The notebook uses the Brown Corpus for text data and GloVe embeddings fo word representations.
-The notebook in this repository  was created on Kaggle, you can view the notebook and run it directly on Kaggle [here](https://www.kaggle.com/code/beasttitan/pos-tagging).  
+This repository contains an implementation of a Part-of-Speech (POS) tagging model using recurrent neural networks (Bidirectional LSTMs) and pre-trained word embeddings. The model uses the Brown Corpus for training data and GloVe embeddings fo word representations. Additionally, a Flask API has been developed to serve the trained model, allowing users to send sentences via HTTP requests and receive POS-tagged outputs
+ 
 
 The project involves the following steps:
 1. **Exploratory Data Analysis (EDA)**: Analyzing the Brown Corpus to understand the distribution of sentence lengths and POS tags.
@@ -11,6 +11,8 @@ The project involves the following steps:
 3. **Model Building**: Constructing a deep learning model using Bidirectional LSTM layers with GloVe embeddings.
 4. **Model Training**: Training the model on the preprocessed data and evaluating its performance.
 5. **Visualization**: Visualizing the training and validation accuracy and loss over epochs.
+6. **Deployment**: The trained model is integrated with a Flask-based API for easy inference.
+
 
 ## Dataset
 
@@ -25,22 +27,23 @@ The model architecture consists of the following layers:
 - **Batch Normalization**: Applied after each LSTM layer to stabilize and speed up training.
 - **Time Distributed Dense Layer**: A dense layer applied to each time step to predict the POS tag for each word.
 
-## Requirements
+## Usage
+### To use the model:
 
-To run this project, you need the following Python libraries:
+You can view the model and run it directly on Kaggle [here](https://www.kaggle.com/code/beasttitan/pos-tagging). 
 
-- `numpy`
-- `pandas`
-- `nltk`
-- `tensorflow`
-- `keras`
-- `scikit-learn`
-- `plotly`
-
-You can install the required libraries using `pip`:
-
-```bash  
-pip install numpy pandas nltk tensorflow scikit-learn plotly
-``` 
+### To use the API:
+- Intsall the dependecies in the requirments file:
+   ```bash
+   pip install -r requirements.txt
+   ```
+- Run the Flask server:
+   ```bash
+   python main.py
+   ```
+- Send a request:
+   ```bash
+   Invoke-WebRequest -Uri "http://127.0.0.1:5000/predict" -Method Post -Body @{sentence="This is a test."}
+   ```
    
 
